@@ -21,7 +21,6 @@ export default function Productos({ resultado }) {
   const [page, setPage] = useState(0);
   const limite = 10;
   const contador = Math.ceil(resultado.length / limite);
-  //var arrayVacio = [];
 
   function arrayDividido(resultado) {
     let arrayVacio = resultado.slice(inicio, inicio + limite);

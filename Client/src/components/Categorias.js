@@ -1,30 +1,55 @@
 import React from "react";
-// import Button from "@material-ui/core/Button";
-// import Menu from "@material-ui/core/Menu";
-// import MenuItem from "@material-ui/core/MenuItem";
-//import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
-function Categorias({ resultado, nueva, usado, otros }) {
-  // const theme = createMuiTheme({
-  //   palette: {
-  //     primary: {
-  //       main: "#FBF159",
-  //     },
-  //   },
-  // });
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+
+export default function Categorias({ resultado, nueva, usado, otros }) {
+  const classes = useStyles();
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#FBF159",
+      },
+    },
+  });
 
   if (resultado) {
     return (
-      <div>
-        <button type="submit" onClick={() => nueva("new")}>
-          Nuevo
-        </button>
-        <button type="submit" onClick={() => usado("used")}>
-          Usado
-        </button>
-        <button type="submit" onClick={() => otros("not_specified")}>
-          Otros
-        </button>
+      <div className={classes.root}>
+        <ThemeProvider theme={theme}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            onClick={() => nueva("new")}
+          >
+            Nuevo
+          </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            onClick={() => usado("used")}
+          >
+            Usado
+          </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            onClick={() => otros("not_specified")}
+          >
+            Otros
+          </Button>
+        </ThemeProvider>
       </div>
     );
   } else {
@@ -35,5 +60,3 @@ function Categorias({ resultado, nueva, usado, otros }) {
     );
   }
 }
-
-export default Categorias;

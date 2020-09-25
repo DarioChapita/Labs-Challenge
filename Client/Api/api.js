@@ -11,11 +11,3 @@ app.get("/api/search", (req, res) => {
 });
 
 app.listen(4000);
-
-// obtenerProductos = async (busqueda) => {
-//   const productos = await axios(`https://api.mercadolibre.com/sites/MLA/search?q=${busqueda.nombre}`);
-
-//   this.setState({
-//     productos: productos.data.results,
-//   });
-// };
