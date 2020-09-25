@@ -1,0 +1,10 @@
+.container {
+  background: #e0e0e0;
+  height: 30rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  margin: 5px;
+  flex-direction: column;
+  /* max-width: 100%; */
+}
