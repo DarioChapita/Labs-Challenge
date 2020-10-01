@@ -1,7 +1,7 @@
-.EstiloCard {
+.App {
+  font-family: sans-serif;
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  align-items: flex-end;
-  justify-content: space-evenly;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }

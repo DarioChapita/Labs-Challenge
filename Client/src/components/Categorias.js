@@ -1,5 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
@@ -11,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Categorias({ resultado, nueva, usado, otros }) {
+export default function Categorias({ resultado, nueva, usado, otros, prueba }) {
   const classes = useStyles();
   const theme = createMuiTheme({
     palette: {
@@ -19,36 +21,51 @@ export default function Categorias({ resultado, nueva, usado, otros }) {
         main: "#FBF159",
       },
     },
+    fab: {
+      margin: 0,
+      top: "auto",
+      left: 20,
+      bottom: 20,
+      right: "auto",
+      position: "fixed",
+    },
   });
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   if (resultado) {
     return (
-      <div className={classes.root}>
+      <div className={classes.root} position="static">
         <ThemeProvider theme={theme}>
           <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            onClick={() => nueva("new")}
+            position="static"
+            aria-controls="simple-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
           >
-            Nuevo
+            Menu
           </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            onClick={() => usado("used")}
+          <Menu
+            id="simple-menu"
+            position="static"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
           >
-            Usado
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            onClick={() => otros("not_specified")}
-          >
-            Otros
-          </Button>
+            <MenuItem onClick={() => nueva("new")}>Nuevo</MenuItem>
+            <MenuItem onClick={() => usado("used")}>Usado</MenuItem>
+            <MenuItem onClick={() => otros("not_specified")}>Otros</MenuItem>
+            <MenuItem onClick={prueba}>Ordenar por Precio</MenuItem>
+          </Menu>
         </ThemeProvider>
       </div>
     );

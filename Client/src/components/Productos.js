@@ -2,39 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import ProductoCard from "./ProductoCard";
 import Categorias from "./Categorias";
-import { makeStyles } from "@material-ui/core/styles";
-import Pagination from "@material-ui/lab/Pagination";
 import swal from "sweetalert";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
-
-export default function Productos({ resultado }) {
+export default function Productos({ resultado, query }) {
   const [listaDeProductos, setlistaDeProductos] = useState([]);
-  const classes = useStyles();
-  const [inicio, setInicio] = useState(0);
-  const [page, setPage] = useState(0);
-  const limite = 10;
-  const contador = Math.ceil(resultado.length / limite);
+  const [ordenarMayorMenor, setOrdenarMayorMenor] = useState([]);
+  const [swicht, setSwicht] = useState(true);
 
-  function arrayDividido(resultado) {
-    let arrayVacio = resultado.slice(inicio, inicio + limite);
-    return arrayVacio;
+  function prueba() {
+    if (swicht) {
+      setSwicht(false);
+      setOrdenarMayorMenor(resultado.reverse());
+      return swicht;
+    } else {
+      setSwicht(true);
+      return swicht;
+    }
   }
-
-  const handleChange = (e, value) => {
-    var index = value - 1;
-    var select = index * limite;
-    setPage(index);
-    setInicio(select);
-    arrayDividido(resultado);
-    console.log("ARRAY VACIO", arrayDividido(resultado));
-  };
 
   function nueva() {
     setlistaDeProductos([]);
@@ -43,11 +27,11 @@ export default function Productos({ resultado }) {
       if (resultado[index].condition === "new") {
         arrayNew.push(resultado[index]);
         setlistaDeProductos(arrayNew);
-      } else {
-        //swal("Henry`s Challenger", "...No existe esta categoria!");
       }
     }
-    // console.log("NUEVO", listaDeProductos);
+    if (arrayNew.length === 0) {
+      swal("Henry`s Challenger", "...No se encontro esta condicion!");
+    }
   }
   function usado() {
     setlistaDeProductos([]);
@@ -56,12 +40,13 @@ export default function Productos({ resultado }) {
       if (resultado[index].condition === "used") {
         arrayUsado.push(resultado[index]);
         setlistaDeProductos(arrayUsado);
-      } else {
-        //swal("Henry`s Challenger", "...No existe esta categoria!");
       }
     }
-    //console.log("USADO", listaDeProductos);
+    if (arrayUsado.length === 0) {
+      swal("Henry`s Challenger", "...No se encontro esta condicion!");
+    }
   }
+
   function otros() {
     setlistaDeProductos([]);
     var arrayOtros = [];
@@ -69,15 +54,15 @@ export default function Productos({ resultado }) {
       if (resultado[index].condition === "not_specified") {
         arrayOtros.push(resultado[index]);
         setlistaDeProductos(arrayOtros);
-      } else {
-        //swal("Henry`s Challenger", "...No existe esta categoria!");
       }
     }
-    // console.log("OTROS", listaDeProductos);
+    if (arrayOtros.length === 0) {
+      swal("Henry`s Challenger", "...No se encontro esta condicion!");
+    }
   }
 
   useEffect(() => {
-    setlistaDeProductos(arrayDividido(resultado));
+    setlistaDeProductos(resultado);
   }, [resultado]);
 
   if (resultado) {
@@ -88,19 +73,36 @@ export default function Productos({ resultado }) {
           nueva={nueva}
           usado={usado}
           otros={otros}
+          prueba={prueba}
         />
         <Grid container justify="center">
-          {listaDeProductos ? (
+          {listaDeProductos && swicht ? (
             listaDeProductos.map((e) => (
               <Grid item md={4} key={e.id}>
                 <ProductoCard
-                  key={e.id}
+                  id={e.id}
                   title={e.title}
                   price={e.price}
                   thumbnail={e.thumbnail.replace("I.jpg", "B.jpg")}
                   sold_quantity={e.sold_quantity}
                   condition={e.condition}
                   available_quantity={e.available_quantity}
+                  query={query}
+                />
+              </Grid>
+            ))
+          ) : listaDeProductos && swicht === false ? (
+            listaDeProductos.map((e) => (
+              <Grid item md={4} key={e.id}>
+                <ProductoCard
+                  id={e.id}
+                  title={e.title}
+                  price={e.price}
+                  thumbnail={e.thumbnail.replace("I.jpg", "B.jpg")}
+                  sold_quantity={e.sold_quantity}
+                  condition={e.condition}
+                  available_quantity={e.available_quantity}
+                  query={query}
                 />
               </Grid>
             ))
@@ -108,7 +110,6 @@ export default function Productos({ resultado }) {
             <div>...</div>
           )}
         </Grid>
-        <Pagination count={contador} page={page} onChange={handleChange} />
       </div>
     );
   } else {

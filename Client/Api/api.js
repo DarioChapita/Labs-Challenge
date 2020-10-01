@@ -10,4 +10,11 @@ app.get("/api/search", (req, res) => {
     .then((data) => res.send(data));
 });
 
+// app.use(cors());
+// app.get("/api/categorias", (req, res) => {
+//   fetch(`https://api.mercadolibre.com/sites/MLA/categories`)
+//     .then((response) => response.json())
+//     .then((data) => res.send(data));
+// });
+
 app.listen(4000);

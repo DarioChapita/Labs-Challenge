@@ -12,14 +12,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Paginacion({ contador, page, handleChange }) {
   const classes = useStyles();
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#FBF159",
+      },
+    },
+  });
   return (
     <div className={classes.root}>
-      <Pagination
-        count={contador}
-        color="secondary"
-        page={page}
-        onChange={handleChange}
-      />
+      <ThemeProvider theme={theme}>
+        <Pagination
+          count={contador}
+          color="primary"
+          page={page}
+          onChange={handleChange}
+        />
+      </ThemeProvider>
     </div>
   );
 }

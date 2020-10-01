@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-//import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-//import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import Logo from "../Imagenes/logoHenry.png";
-//import Categorias from "./Categorias";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,20 +85,12 @@ export default function SearchBar({ onSearch, handleClick }) {
           <a href={SoyHenry}>{logo}</a>
         </Toolbar>
         <Toolbar variant="dense">
-          {/* <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          ></IconButton> */}
           <Typography
             className={classes.title}
             color="primary"
             variant="h6"
             noWrap
-          >
-            Elegi el estado...
-          </Typography>
+          ></Typography>
 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -112,7 +101,6 @@ export default function SearchBar({ onSearch, handleClick }) {
                 e.preventDefault();
                 onSearch(categorias);
                 setCategorias("");
-                // console.log("Obtener Productos por el nombre", categorias);
               }}
             >
               <InputBase
