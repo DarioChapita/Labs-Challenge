@@ -1,9 +1,9 @@
-Español: Primero, en la ubicación '/lab-challenge/src' correr:
+Español: Primero, en la ubicación '/lab-challenge/Client/Api' correr:
 
 node api.js
 para correr el back-end.
 
-En la dirección del proyecto ('/lab-challenge') correr:
+En la dirección del proyecto ('/lab-challenge/Client') correr:
 
 npm start
 para hacer correr el front-end
@@ -21,12 +21,12 @@ ESTILO En esta ocación utilicé Material UI, haciendo una pagina web responsive
 
 ۩๑●▬▬▬▬●▬▬▬▬๑۩۩๑▬▬▬▬●▬▬▬▬๑۩۩๑▬▬▬▬●▬▬▬▬๑۩۩๑▬▬▬▬●▬▬▬▬●๑۩ ●▬▬▬▬๑۩۩๑▬▬▬▬●▬▬▬▬๑۩۩๑▬▬▬▬●▬▬▬▬๑۩۩๑▬▬▬▬●▬▬▬▬●๑۩۩๑▬▬▬▬●
 
-English: First, in the location '/ lab-challenge / src' run:
+English: First, in the location '/lab-challenge/Client/Api' run:
 
 node api.js
 to run the backend.
 
-In the project address ('/ lab-challenge') run:
+In the project address ('/lab-challenge/Clien') run:
 
 npm start
 to run the front-end
