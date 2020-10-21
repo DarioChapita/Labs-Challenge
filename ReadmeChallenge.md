@@ -1,13 +1,3 @@
-<p align='left'>
-    <img src='https://static.wixstatic.com/media/85087f_0d84cbeaeb824fca8f7ff18d7c9eaafd~mv2.png/v1/fill/w_160,h_30,al_c,q_85,usm_0.66_1.00_0.01/Logo_completo_Color_1PNG.webp' </img>
-</p>
-
-# Labs Challenge
-
-El objetivo del challenge es construir un Front-End y un Back-End que interactuen con una API externa.
-
-Vamos a usar la API pública de **Mercado Libre**. De ella vamos a extraer publicaciones que luego vamos a guardar en nuestro propio back-end usando un caché. Para el Fron-end vamos a desarrollar una serie de Componentes de React para poder mostrar e interactuar con las publicaciones antes mencionadas.
-
 ## Back-End
 
 Usaremos el siguiente endpoint de Mercado Libre `https://api.mercadolibre.com/sites/MLA/search?q={query}`.
@@ -101,14 +91,3 @@ Este componente va mostrar un arreglo de productos (obtenidos de la API) usando 
 * Poder ordenar los productos en base a su precio, de forma ascendete o descendente.
 * Poder filtrar por condicion.
 * Poder páginar los resultados de a 30 productos por página.
-
-
-
-## Notas
-
-Crear un repo nuevo en tu github (privado o público) y compartirlo con `Antonio Tralice <toni@soyhenry.com>` una vez que hayas terminado.
-
-Podes usar cualquier librería extra para resolver el challenge ya sea de front-end o de back-end.
-Recomendamos usar alguna librería de front-end (Boostrap, materialize, etc...).
-
-Tenes cómo máximo dos semanas para completar el challenge.
